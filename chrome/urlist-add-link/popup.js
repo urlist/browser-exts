@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById("urlist").prepend = tab.title;
       console.log(tab.url);
       console.log(tab.title);
-    })
+    
 
     var listObject = chrome.extension.getBackgroundPage().lists;
 
@@ -21,17 +21,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('#urlist').submit(function() {
       var newTitle = $('#newtitle').val();
+
       var listName = function() {
         if ($('#newlist').val() === "") {
           return $('#listnames').val();
         }
         else {
-          return listname = $('#newlist').val();
+          return $('#newlist').val();
         }
-      };
+      }();
+
       var description = $('#description').val();
 
+      var promise = chrome.extension.getBackgroundPage().saveLink(listName,tab.url,newTitle);
+
+      promise.done(function () {
+        document.body.innerHTML = "Link saved!";
+        window.setTimeout(window.close,1000);
+      });
+
+      promise.fail(function() {
+        document.body.innerHTML = "Whoops, fail. Try again.";
+        window.setTimeout(window.close,1000);
+      }); 
 
       return false;
     });
+  })
 });

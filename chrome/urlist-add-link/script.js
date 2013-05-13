@@ -18,7 +18,7 @@ function updateLists () {
 }
 
 function saveLink (listHash, url, title) {
-    sendMessage([null, "add-url", { list_hash: listHash }, { url: url, title: title }, null]);
+    return sendMessage([null, "add-url", { list_hash: listHash }, { url: url, title: title }, null]);
 }
 
 updateLists();
