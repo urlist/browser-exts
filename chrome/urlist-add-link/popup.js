@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var listObject = JSON.parse(chrome.extension.getBackgroundPage().xhr.response).lists;
 
     for (var i = 0; i < listObject.length; i++) {
-      $('#listnames').append('<option>'+listObject[i].title+'</option>');
-    }    
+        var currentList = listObject[i];
+        var html = $("<option/>", { text: currentList.title, value: currentList.hash });
+
+        $('#listnames').append(html);
+    }
+
+    $('#listnames').on("change", function (e) { console.log($(e.target).val()); });
 
 });
