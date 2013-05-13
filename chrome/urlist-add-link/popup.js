@@ -85,4 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(tab.url);
       console.log(tab.title);
     })
+
+    console.log(JSON.parse(chrome.extension.getBackgroundPage().xhr.response));
 });
