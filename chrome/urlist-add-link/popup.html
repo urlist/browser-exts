@@ -24,10 +24,20 @@
       - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
      -->
 
-     <div id="tab-url"></div>
+     
+    <script src="jq.js"></script>
+    <script src="handlebars.js"></script>
     <script src="popup.js"></script>
   </head>
   <body>
+    <div id="tab-url"></div>
+
+    <form>
+      <select id="listnames" placeholder="Select Group">
+      </select>
+      <submit>Save to Urli.st</submit>
+    </form>    
+
   </body>
 </html>
 
