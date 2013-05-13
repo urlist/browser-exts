@@ -1,13 +1,23 @@
-console.log("hello, world!");
+var API_ROOT = "http://urlist.no-ip.org/api/",
+    lists;
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://urli.st/api/profile/~", true);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState == 4) {
-    // WARNING! Might be evaluating an evil script!
-    console.log(xhr.responseText);
-  }
+function sendMessage(message) {
+    return $.ajax({
+        url: API_ROOT + "motherbrain",
+        type: "POST",
+        data: JSON.stringify( message ),
+        contentType: "application/json",
+        dataType: "json"
+    });
 }
 
-xhr.send();
+function updateLists () {
+    $.get(API_ROOT + "profile/~").done( function (data) { lists = data.lists; } );
+}
+
+function saveLink (listHash, url, title) {
+    sendMessage([null, "add-url", { list_hash: listHash }, { url: url, title: title }, null]);
+}
+
+updateLists();
 
