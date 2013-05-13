@@ -81,6 +81,7 @@ var kittenGenerator = {
 document.addEventListener('DOMContentLoaded', function () {
 //  kittenGenerator.requestKittens();
     chrome.tabs.getSelected(null, function(tab) {
+      document.getElementById("tab-url").innerHTML = tab.url;
       console.log(tab.url);
       console.log(tab.title);
     })
