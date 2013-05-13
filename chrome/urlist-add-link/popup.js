@@ -80,5 +80,8 @@ var kittenGenerator = {
 // Run our kitten generation script as soon as the document's DOM is ready.
 document.addEventListener('DOMContentLoaded', function () {
 //  kittenGenerator.requestKittens();
-    chrome.tabs.getCurrent(function(tab) {console.log(tab);})
+    chrome.tabs.getSelected(null, function(tab) {
+      console.log(tab.url);
+      console.log(tab.title);
+    })
 });
