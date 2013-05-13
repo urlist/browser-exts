@@ -11,9 +11,7 @@
   },
   "permissions": [
     "https://secure.flickr.com/",
-    "tabs"
-  ],
-  "origins": [
-    "http://urli.st"
+    "tabs",
+    "http://urli.st/"
   ]
 }
