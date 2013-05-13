@@ -4,22 +4,34 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     chrome.tabs.getSelected(null, function(tab) {
-      document.getElementById("tab-url").innerHTML = tab.url;
+      document.getElementById("urlist").prepend = tab.title;
       console.log(tab.url);
       console.log(tab.title);
     })
 
-    console.log(JSON.parse(chrome.extension.getBackgroundPage().xhr.response));
-
-    var listObject = JSON.parse(chrome.extension.getBackgroundPage().xhr.response).lists;
+    var listObject = chrome.extension.getBackgroundPage().lists;
 
     for (var i = 0; i < listObject.length; i++) {
         var currentList = listObject[i];
         var html = $("<option/>", { text: currentList.title, value: currentList.hash });
-
-        $('#listnames').append(html);
     }
+    $('#listnames').append(html);
 
     $('#listnames').on("change", function (e) { console.log($(e.target).val()); });
 
+    $('#urlist').submit(function() {
+      var newTitle = $('#newtitle').val();
+      var listName = function() {
+        if ($('#newlist').val() === "") {
+          return $('#listnames').val();
+        }
+        else {
+          return listname = $('#newlist').val();
+        }
+      };
+      var description = $('#description').val();
+
+
+      return false;
+    });
 });
