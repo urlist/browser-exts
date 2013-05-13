@@ -1,4 +1,4 @@
-var API_ROOT = "http://urlist.no-ip.org/api/",
+var API_ROOT = "http://urli.st/api/",
     lists;
 
 function sendMessage(message) {
@@ -12,7 +12,9 @@ function sendMessage(message) {
 }
 
 function updateLists () {
-    $.get(API_ROOT + "profile/~").done( function (data) { lists = data.lists; } );
+    $.get(API_ROOT + "profile/~").done( function (data) {
+        lists = data.lists;
+    } );
 }
 
 function saveLink (listHash, url, title) {
